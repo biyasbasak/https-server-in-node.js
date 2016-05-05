@@ -11,12 +11,13 @@ var secport = port + 443;
 // Create HTTP server.
 var server = http.createServer(app);
 
-// Create HTTPS server.
+//reading the certificate and the key
 var options = {
 	key: fs.readFileSync(__dirname + '/certificate/private.key'),
 	cert: fs.readFileSync(__dirname + '/certificate/certificate.pem')
 };
 
+// Create HTTPS server
 var secureServer = https.createServer(options, app);
 
 // redirecting all requests to https 
