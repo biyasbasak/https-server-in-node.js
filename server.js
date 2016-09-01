@@ -1,24 +1,24 @@
-var express = require('express');
-var http = require('http');
-var https = require('https');
-var fs = require('fs');
-var app = express();
+const express = require('express');
+const http = require('http');
+const https = require('https');
+const fs = require('fs');
+const app = express();
 
 
-var port = process.env.PORT || 3000;
-var secport = port + 443;
+const port = process.env.PORT || 3000;
+const secport = port + 443;
 
-// Create HTTP server.
-var server = http.createServer(app);
+// Create HTTP server
+const server = http.createServer(app);
 
 //reading the certificate and the key
-var options = {
+const options = {
 	key: fs.readFileSync(__dirname + '/certificate/private.key'),
 	cert: fs.readFileSync(__dirname + '/certificate/certificate.pem')
 };
 
 // Create HTTPS server
-var secureServer = https.createServer(options, app);
+const secureServer = https.createServer(options, app);
 
 // redirecting all requests to https 
 app.all('*', (req, res, next)=>{
